@@ -1,0 +1,24 @@
+{
+  "name": "react_flux",
+  "version": "1.0.0",
+  "description": "Small project for trying out react and flux.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebbeLar/react_flux.git"
+  },
+  "author": "Sebastian Larsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebbeLar/react_flux/issues"
+  },
+  "homepage": "https://github.com/SebbeLar/react_flux#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^3.2.2",
+    "gulp-open": "^1.0.0"
+  }
+}
