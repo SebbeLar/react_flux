@@ -2,7 +2,8 @@
     "extends": "eslint:recommended",
     "env": {
         "browser": true,
-        "node": true
+        "node": true,
+        "jquery": true
     },
     "rules": {
         "no-console": 0,
@@ -15,6 +16,10 @@
         "ecmaFeatures": {
             "jsx": true
         }
+    },
+    "globals": {
+        "$": false,
+        "jQuery": false
     }
 
 }
