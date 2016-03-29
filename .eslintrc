@@ -19,7 +19,8 @@
     },
     "globals": {
         "$": false,
-        "jQuery": false
+        "jQuery": false,
+        "app": false
     }
 
 }
