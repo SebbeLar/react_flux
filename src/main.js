@@ -1,10 +1,10 @@
 $ = jQuery = require('jquery');
 var ReactDOM = require('react-dom'),
     React = require('react'),
-    Home = require('./components/homepage'),
-    About = require('./components/about/aboutpage'),
+    Home = require('./components/home'),
+    About = require('./components/about/about'),
     Header = require('./components/common/header'),
-    Authors = require('./components/authors/authorpage');
+    Authors = require('./components/authors/authors');
 
 var App = React.createClass({
     render: function() {

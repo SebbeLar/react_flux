@@ -33957,7 +33957,49 @@ module.exports = About;
 },{"react":160}],164:[function(require,module,exports){
 'use strict';
 
+var React = require('react');
+
+
+var AuthorList = React.createClass({displayName: "AuthorList",
+    propTypes: {
+        authors: React.PropTypes.array.isRequired
+    },
+    
+    render: function() {
+        var createAuthorRow = function(author) {
+            return (
+               React.createElement("tr", {key: author.id}, 
+                   React.createElement("td", null, React.createElement("a", {href: '/#authors/' + author.id}, author.id)), 
+                   React.createElement("td", null, author.firstName, " ", author.lastName)
+               )
+            );
+        };
+        
+        return (
+           React.createElement("div", null, 
+               React.createElement("table", {className: "table"}, 
+                    React.createElement("thead", null, 
+                        React.createElement("tr", null, 
+                            React.createElement("th", null, "ID"), 
+                            React.createElement("th", null, "Name")
+                        )
+                    ), 
+                    React.createElement("tbody", null, 
+                        this.props.authors.map(createAuthorRow, this)
+                    )
+               )
+           )
+        );
+    }
+});
+
+module.exports = AuthorList;
+
+},{"react":160}],165:[function(require,module,exports){
+'use strict';
+
 var React = require('react'),
+    AuthorList = require('./authorList'),
     AuthorApi = require('../../api/authorApi');
 
 
@@ -33968,33 +34010,17 @@ var Authors = React.createClass({displayName: "Authors",
         };
     },
     
-    componentWillMount: function() {
-        this.setState({ authors: AuthorApi.getAllAuthors() });
+    componentDidMount: function() {
+        if(this.isMounted()) {
+            this.setState({ authors: AuthorApi.getAllAuthors() });
+        }
     },
     
     render: function() {
-        var createAuthorRow = function(author) {
-            return (
-               React.createElement("tr", {key: author.is}, 
-                   React.createElement("td", null, React.createElement("a", {href: '/#authors/' + author.id}, author.id)), 
-                   React.createElement("td", null, author.firstName, " ", author.lastName)
-               )
-            );
-        };
-        
         return (
            React.createElement("div", null, 
                React.createElement("h1", null, "Authors"), 
-               
-               React.createElement("table", {className: "table"}, 
-                    React.createElement("thead", null, 
-                        React.createElement("th", null, "ID"), 
-                        React.createElement("th", null, "Name")
-                    ), 
-                    React.createElement("tbody", null, 
-                        this.state.authors.map(createAuthorRow, this)
-                    )
-               )
+               React.createElement(AuthorList, {authors:  this.state.authors})
            )
         );
     }
@@ -34002,7 +34028,7 @@ var Authors = React.createClass({displayName: "Authors",
 
 module.exports = Authors;
 
-},{"../../api/authorApi":161,"react":160}],165:[function(require,module,exports){
+},{"../../api/authorApi":161,"./authorList":164,"react":160}],166:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34028,7 +34054,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react":160}],166:[function(require,module,exports){
+},{"react":160}],167:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34046,14 +34072,14 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":160}],167:[function(require,module,exports){
+},{"react":160}],168:[function(require,module,exports){
 $ = jQuery = require('jquery');
 var ReactDOM = require('react-dom'),
     React = require('react'),
-    Home = require('./components/homepage'),
-    About = require('./components/about/aboutpage'),
+    Home = require('./components/home'),
+    About = require('./components/about/about'),
     Header = require('./components/common/header'),
-    Authors = require('./components/authors/authorpage');
+    Authors = require('./components/authors/authors');
 
 var App = React.createClass({displayName: "App",
     render: function() {
@@ -34083,4 +34109,4 @@ function render() {
 window.addEventListener('hashchange', render);
 render();
 
-},{"./components/about/aboutpage":163,"./components/authors/authorpage":164,"./components/common/header":165,"./components/homepage":166,"jquery":28,"react":160,"react-dom":31}]},{},[167]);
+},{"./components/about/about":163,"./components/authors/authors":165,"./components/common/header":166,"./components/home":167,"jquery":28,"react":160,"react-dom":31}]},{},[168]);

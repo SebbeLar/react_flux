@@ -1,24 +1,17 @@
 'use strict';
 
-var React = require('react'),
-    AuthorApi = require('../../api/authorApi');
+var React = require('react');
 
 
-var Authors = React.createClass({
-    getInitialState: function() {
-        return {
-            authors: []
-        };
-    },
-    
-    componentWillMount: function() {
-        this.setState({ authors: AuthorApi.getAllAuthors() });
+var AuthorList = React.createClass({
+    propTypes: {
+        authors: React.PropTypes.array.isRequired
     },
     
     render: function() {
         var createAuthorRow = function(author) {
             return (
-               <tr key={author.is}>
+               <tr key={author.id}>
                    <td><a href={'/#authors/' + author.id}>{author.id}</a></td>
                    <td>{author.firstName} {author.lastName}</td>
                </tr>
@@ -27,15 +20,15 @@ var Authors = React.createClass({
         
         return (
            <div>
-               <h1>Authors</h1>
-               
                <table className='table'>
                     <thead>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        {this.state.authors.map(createAuthorRow, this)}
+                        {this.props.authors.map(createAuthorRow, this)}
                     </tbody>
                </table>
            </div>
@@ -43,4 +36,4 @@ var Authors = React.createClass({
     }
 });
 
-module.exports = Authors;
+module.exports = AuthorList;
